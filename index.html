@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TikTok Video Generator - Fix Corruption Error</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="flex items-center justify-between">
+                <h1 class="header__title">TikTok Video Generator</h1>
+                <button class="btn btn--outline theme-toggle" id="themeToggle">
+                    <span class="theme-toggle__icon">🌙</span>
+                </button>
+            </div>
+            <p class="header__subtitle">Create viral TikTok videos with AI - Error 0xC00D36C4 Fixed!</p>
+        </header>
+
+        <!-- Story Type Selection -->
+        <section class="story-selection">
+            <h2>Choose Story Type</h2>
+            <div class="story-cards">
+                <div class="story-card" data-type="AITA">
+                    <div class="story-card__icon">⚖️</div>
+                    <h3>AITA Stories</h3>
+                    <p>Moral dilemmas and judgment calls</p>
+                </div>
+                <div class="story-card" data-type="TIFU">
+                    <div class="story-card__icon">🤦</div>
+                    <h3>TIFU Stories</h3>
+                    <p>Epic fails and embarrassing moments</p>
+                </div>
+                <div class="story-card" data-type="RelationshipAdvice">
+                    <div class="story-card__icon">💝</div>
+                    <h3>Relationship Advice</h3>
+                    <p>Love, drama, and relationship issues</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Duration Control -->
+        <section class="duration-control">
+            <h2>Video Duration</h2>
+            <div class="slider-container">
+                <input type="range" id="durationSlider" min="2" max="10" value="5" step="0.5" class="slider">
+                <div class="duration-display">
+                    <span id="durationValue">5</span> minutes
+                    (<span id="wordCount">700</span> words)
+                </div>
+            </div>
+        </section>
+
+        <!-- Story Generation -->
+        <section class="story-generation">
+            <button class="btn btn--primary btn--full-width" id="generateStory">
+                Generate Story
+            </button>
+            <div class="story-preview" id="storyPreview" style="display: none;">
+                <h3>Generated Story</h3>
+                <div class="story-content" id="storyContent"></div>
+            </div>
+        </section>
+
+        <!-- Customization Options -->
+        <section class="customization" id="customizationSection" style="display: none;">
+            <h2>Customize Your Video</h2>
+            
+            <!-- Voice Settings -->
+            <div class="settings-group">
+                <h3>Voice Settings</h3>
+                <div class="voice-controls">
+                    <div class="form-group">
+                        <label class="form-label">Voice Type</label>
+                        <select class="form-control" id="voiceSelect">
+                            <option value="0">Professional</option>
+                            <option value="1">Conversational</option>
+                            <option value="2">Dramatic</option>
+                            <option value="3">Fast-paced</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Speed: <span id="speedValue">1.0x</span></label>
+                        <input type="range" id="speedSlider" min="0.5" max="2.0" value="1.0" step="0.1" class="slider">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Background Selection -->
+            <div class="settings-group">
+                <h3>Background Theme</h3>
+                <div class="background-grid">
+                    <div class="background-option active" data-theme="minecraft">
+                        <div class="background-preview minecraft-bg"></div>
+                        <span>Minecraft Parkour</span>
+                    </div>
+                    <div class="background-option" data-theme="nature">
+                        <div class="background-preview nature-bg"></div>
+                        <span>Nature Scenes</span>
+                    </div>
+                    <div class="background-option" data-theme="urban">
+                        <div class="background-preview urban-bg"></div>
+                        <span>Urban Landscape</span>
+                    </div>
+                    <div class="background-option" data-theme="abstract">
+                        <div class="background-preview abstract-bg"></div>
+                        <span>Abstract Geometry</span>
+                    </div>
+                    <div class="background-option" data-theme="ocean">
+                        <div class="background-preview ocean-bg"></div>
+                        <span>Ocean Waves</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Preview -->
+        <section class="video-preview" id="videoPreviewSection" style="display: none;">
+            <h2>Video Preview</h2>
+            <div class="preview-container">
+                <canvas id="videoCanvas" width="1080" height="1920"></canvas>
+                <div class="preview-overlay">
+                    <div class="captions" id="captions"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Generation -->
+        <section class="video-generation" id="videoGenerationSection" style="display: none;">
+            <button class="btn btn--primary btn--full-width btn--lg" id="generateVideo">
+                🎬 Generate Video
+            </button>
+            
+            <div class="progress-container" id="progressContainer" style="display: none;">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-text" id="progressText">Preparing video generation...</div>
+            </div>
+
+            <div class="download-section" id="downloadSection" style="display: none;">
+                <div class="status status--success">
+                    ✅ Video generated successfully! No corruption detected.
+                </div>
+                <button class="btn btn--primary btn--full-width btn--lg" id="downloadVideo">
+                    📥 Download MP4 Video
+                </button>
+                <div class="file-info" id="fileInfo"></div>
+            </div>
+        </section>
+
+        <!-- Error Handling -->
+        <div class="error-container" id="errorContainer" style="display: none;">
+            <div class="status status--error">
+                <div class="error-title">Error Detected</div>
+                <div class="error-message" id="errorMessage"></div>
+                <button class="btn btn--outline" id="retryButton">Retry Generation</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
