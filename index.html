@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TikTok Story Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo">
+                        <span class="logo-icon">🎬</span>
+                        <h1 class="logo-text">TikTok Story Generator</h1>
+                    </div>
+                </div>
+                <div class="header-controls">
+                    <button id="themeToggle" class="theme-toggle btn btn--outline">
+                        <span class="theme-icon">🌙</span>
+                        <span class="theme-text">Dark</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <div class="container">
+            <div class="content-grid">
+                <!-- Story Configuration Card -->
+                <section class="card story-config-card">
+                    <div class="card__header">
+                        <h2>📝 Story Configuration</h2>
+                        <p class="card-subtitle">Choose your story type or write custom content</p>
+                    </div>
+                    <div class="card__body">
+                        <!-- Story Type Selector -->
+                        <div class="form-group">
+                            <label class="form-label">Story Type</label>
+                            <div class="story-types">
+                                <div class="story-type active" data-type="aita">
+                                    <div class="story-type-icon">⚖️</div>
+                                    <div class="story-type-content">
+                                        <div class="story-type-name">AITA</div>
+                                        <div class="story-type-desc">Moral dilemma stories</div>
+                                    </div>
+                                </div>
+                                <div class="story-type" data-type="tifu">
+                                    <div class="story-type-icon">🤦</div>
+                                    <div class="story-type-content">
+                                        <div class="story-type-name">TIFU</div>
+                                        <div class="story-type-desc">Embarrassing mistakes</div>
+                                    </div>
+                                </div>
+                                <div class="story-type" data-type="relationship">
+                                    <div class="story-type-icon">💕</div>
+                                    <div class="story-type-content">
+                                        <div class="story-type-name">Relationship</div>
+                                        <div class="story-type-desc">Interpersonal conflicts</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Custom Story Input -->
+                        <div class="form-group">
+                            <label class="form-label">Your Story</label>
+                            <textarea id="storyText" class="form-control story-textarea" placeholder="Write your story here or use the template from your selected type..." rows="6"></textarea>
+                            <button id="useTemplate" class="btn btn--secondary btn--sm mt-8">Use Template</button>
+                        </div>
+
+                        <!-- Length Selector -->
+                        <div class="form-group">
+                            <label class="form-label">Video Length: <span id="lengthValue">60</span> seconds</label>
+                            <input type="range" id="lengthSlider" class="length-slider" min="30" max="180" value="60" step="15">
+                            <div class="length-marks">
+                                <span>30s</span>
+                                <span>60s</span>
+                                <span>90s</span>
+                                <span>120s</span>
+                                <span>180s</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Video Settings Card -->
+                <section class="card video-settings-card">
+                    <div class="card__header">
+                        <h2>🎨 Video Settings</h2>
+                        <p class="card-subtitle">Customize your video appearance and voice</p>
+                    </div>
+                    <div class="card__body">
+                        <!-- Background Selection -->
+                        <div class="form-group">
+                            <label class="form-label">Background</label>
+                            <div class="background-grid">
+                                <div class="background-option active" data-bg="minecraft">
+                                    <div class="background-preview minecraft-bg"></div>
+                                    <div class="background-name">Minecraft Parkour</div>
+                                </div>
+                                <div class="background-option" data-bg="nature">
+                                    <div class="background-preview nature-bg"></div>
+                                    <div class="background-name">Peaceful Nature</div>
+                                </div>
+                                <div class="background-option" data-bg="urban">
+                                    <div class="background-preview urban-bg"></div>
+                                    <div class="background-name">City Vibes</div>
+                                </div>
+                                <div class="background-option" data-bg="abstract">
+                                    <div class="background-preview abstract-bg"></div>
+                                    <div class="background-name">Abstract Art</div>
+                                </div>
+                                <div class="background-option" data-bg="ocean">
+                                    <div class="background-preview ocean-bg"></div>
+                                    <div class="background-name">Ocean Waves</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Voice Settings -->
+                        <div class="form-group">
+                            <label class="form-label">Voice</label>
+                            <select id="voiceSelect" class="form-control">
+                                <option value="male-deep">Male - Deep</option>
+                                <option value="female-warm" selected>Female - Warm</option>
+                                <option value="male-young">Male - Young</option>
+                                <option value="female-professional">Female - Professional</option>
+                                <option value="neutral-clear">Neutral - Clear</option>
+                            </select>
+                            <button id="previewVoice" class="btn btn--outline btn--sm mt-8">🔊 Preview Voice</button>
+                        </div>
+
+                        <!-- Caption Style -->
+                        <div class="form-group">
+                            <label class="form-label">Caption Style</label>
+                            <div class="caption-styles">
+                                <div class="caption-style active" data-style="classic">
+                                    <div class="caption-preview tiktok-classic">TikTok Classic</div>
+                                </div>
+                                <div class="caption-style" data-style="modern">
+                                    <div class="caption-preview modern-clean">Modern Clean</div>
+                                </div>
+                                <div class="caption-style" data-style="bold">
+                                    <div class="caption-preview bold-impact">Bold Impact</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Preview Card -->
+                <section class="card preview-card">
+                    <div class="card__header">
+                        <h2>📱 Preview</h2>
+                        <p class="card-subtitle">See how your video will look</p>
+                    </div>
+                    <div class="card__body">
+                        <div class="video-preview">
+                            <div class="phone-mockup">
+                                <div class="phone-screen">
+                                    <div id="previewBackground" class="preview-background minecraft-bg">
+                                        <div class="preview-overlay">
+                                            <div id="previewText" class="preview-text">
+                                                Your story will appear here...
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Video Controls -->
+                        <div class="video-controls">
+                            <button id="playPause" class="control-btn">▶️</button>
+                            <div class="timeline">
+                                <input type="range" id="timelineSlider" class="timeline-slider" min="0" max="100" value="0">
+                            </div>
+                            <span id="currentTime" class="time-display">0:00</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Action Panel -->
+            <section class="action-panel">
+                <div class="action-buttons">
+                    <button id="generateVideo" class="btn btn--primary btn--lg generate-btn">
+                        <span class="btn-text">🎬 Generate Video</span>
+                        <div class="loading-spinner hidden"></div>
+                    </button>
+                    <button id="resetAll" class="btn btn--outline">🔄 Reset</button>
+                </div>
+                
+                <div class="export-options hidden">
+                    <button id="downloadVideo" class="btn btn--secondary">📥 Download</button>
+                    <button id="shareVideo" class="btn btn--outline">🔗 Share</button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="tips-section">
+                    <h3>💡 Quick Tips</h3>
+                    <ul class="tips-list">
+                        <li>Keep stories engaging with conflict and resolution</li>
+                        <li>Use shorter sentences for better text-to-speech flow</li>
+                        <li>Test different backgrounds to match your story mood</li>
+                    </ul>
+                </div>
+                <div class="github-section">
+                    <h3>📚 GitHub Publishing Guide</h3>
+                    <details class="github-guide">
+                        <summary>How to publish these files on GitHub</summary>
+                        <div class="guide-content">
+                            <ol>
+                                <li><strong>Create a new repository:</strong> Go to GitHub.com and click "New repository"</li>
+                                <li><strong>Name your repo:</strong> Use a descriptive name like "tiktok-story-generator"</li>
+                                <li><strong>Upload files:</strong> Upload index.html, style.css, and app.js to your repository</li>
+                                <li><strong>Enable GitHub Pages:</strong> Go to Settings > Pages > Source: Deploy from branch > select "main"</li>
+                                <li><strong>Access your app:</strong> Your app will be available at: https://[username].github.io/[repository-name]</li>
+                                <li><strong>Custom domain (optional):</strong> Add a CNAME file with your domain name for custom URLs</li>
+                            </ol>
+                            <p><strong>Pro tip:</strong> Make sure your main HTML file is named "index.html" for GitHub Pages to work automatically!</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
