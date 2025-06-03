@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TikTok Story Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="flex items-center gap-16">
+                <div class="tiktok-logo">📱</div>
+                <h1 class="header-title">TikTok Story Generator</h1>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Story Generation Section -->
+            <section class="story-section">
+                <h2 class="section-title">Choose Your Story Type</h2>
+                <div class="story-types">
+                    <div class="story-card" data-type="AITA">
+                        <div class="story-icon">⚖️</div>
+                        <h3>AITA Stories</h3>
+                        <p>Am I The A**hole scenarios with moral dilemmas</p>
+                        <button class="btn btn--primary generate-btn" data-type="AITA">Generate Random Story</button>
+                    </div>
+                    <div class="story-card" data-type="TIFU">
+                        <div class="story-icon">🤦</div>
+                        <h3>TIFU Stories</h3>
+                        <p>Today I F***ed Up confession stories</p>
+                        <button class="btn btn--primary generate-btn" data-type="TIFU">Generate Random Story</button>
+                    </div>
+                    <div class="story-card" data-type="RelationshipAdvice">
+                        <div class="story-icon">💕</div>
+                        <h3>Relationship Advice</h3>
+                        <p>Relationship drama and advice requests</p>
+                        <button class="btn btn--primary generate-btn" data-type="RelationshipAdvice">Generate Random Story</button>
+                    </div>
+                </div>
+
+                <!-- Story Length Control -->
+                <div class="story-controls">
+                    <div class="form-group">
+                        <label class="form-label">Story Duration: <span id="duration-display">5 minutes</span></label>
+                        <input type="range" id="duration-slider" class="form-control" min="2" max="10" value="5">
+                        <div class="flex justify-between">
+                            <span>2 min</span>
+                            <span id="word-count">~700 words</span>
+                            <span>10 min</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Generated Story Display -->
+                <div class="story-display">
+                    <h3>Generated Story</h3>
+                    <textarea id="story-text" class="form-control story-textarea" placeholder="Your generated story will appear here..." readonly></textarea>
+                </div>
+            </section>
+
+            <!-- Video Configuration Section -->
+            <section class="config-section">
+                <h2 class="section-title">Video Configuration</h2>
+                <div class="config-grid">
+                    <div class="form-group">
+                        <label class="form-label">Voice</label>
+                        <select id="voice-select" class="form-control">
+                            <option value="female">Default Female</option>
+                            <option value="male">Default Male</option>
+                            <option value="british-female">British Female</option>
+                            <option value="american-male">American Male</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Speech Rate: <span id="rate-display">1.0x</span></label>
+                        <input type="range" id="rate-slider" class="form-control" min="0.5" max="2" step="0.1" value="1">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Background Animation</label>
+                        <select id="background-select" class="form-control">
+                            <option value="minecraft">Minecraft Parkour</option>
+                            <option value="nature">Nature Scenes</option>
+                            <option value="urban">Urban Landscape</option>
+                            <option value="abstract">Abstract Geometry</option>
+                            <option value="ocean">Ocean Waves</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Caption Style</label>
+                        <select id="caption-style" class="form-control">
+                            <option value="bold">Bold</option>
+                            <option value="outlined">Outlined</option>
+                            <option value="shadow">Shadow</option>
+                            <option value="glow">Glow</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Caption Animation</label>
+                        <select id="animation-type" class="form-control">
+                            <option value="fadeIn">Fade In</option>
+                            <option value="slideUp">Slide Up</option>
+                            <option value="typewriter">Typewriter</option>
+                            <option value="pop">Pop</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Video Preview Section -->
+            <section class="preview-section">
+                <h2 class="section-title">Video Preview</h2>
+                <div class="preview-container">
+                    <div class="video-preview">
+                        <canvas id="preview-canvas" width="540" height="960"></canvas>
+                        <div class="preview-overlay">
+                            <div class="caption-text" id="preview-caption"></div>
+                        </div>
+                    </div>
+                    <div class="preview-controls">
+                        <div class="flex items-center gap-16">
+                            <button id="play-pause-btn" class="btn btn--secondary">▶️ Play</button>
+                            <button id="stop-btn" class="btn btn--secondary">⏹️ Stop</button>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <div id="progress-fill" class="progress-fill"></div>
+                            </div>
+                            <span id="time-display">0:00 / 0:00</span>
+                        </div>
+                        <div class="volume-control">
+                            <label>Volume:</label>
+                            <input type="range" id="volume-slider" min="0" max="100" value="80">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Video Generation Section -->
+            <section class="generation-section">
+                <h2 class="section-title">Generate & Download</h2>
+                <div class="generation-controls">
+                    <button id="generate-video-btn" class="btn btn--primary btn--lg">Generate Video</button>
+                    <div id="generation-progress" class="progress-indicator hidden">
+                        <div class="spinner"></div>
+                        <span>Generating video...</span>
+                        <div class="progress-bar">
+                            <div id="generation-progress-fill" class="progress-fill"></div>
+                        </div>
+                    </div>
+                    <button id="download-btn" class="btn btn--secondary btn--lg hidden">Download MP4</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
