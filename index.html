@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TikTok Story Generator - Create Faceless Videos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header__brand">
+                <h1 class="header__title">📱 TikTok Story Generator</h1>
+                <p class="header__subtitle">Create engaging faceless videos in minutes</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main">
+            <!-- Step 1: Story Category Selection -->
+            <section class="step-section" id="categorySection">
+                <div class="step-header">
+                    <h2 class="step-title">Choose Your Story Type</h2>
+                    <p class="step-description">Select the type of Reddit story you want to generate</p>
+                </div>
+                
+                <div class="category-grid">
+                    <div class="category-card" data-category="aita">
+                        <div class="category-card__emoji">⚖️</div>
+                        <h3 class="category-card__title">AITA</h3>
+                        <p class="category-card__description">Am I The Asshole - Moral dilemma stories</p>
+                        <div class="category-card__examples">
+                            <span class="tag">Relationship conflicts</span>
+                            <span class="tag">Family disputes</span>
+                            <span class="tag">Workplace drama</span>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card" data-category="tifu">
+                        <div class="category-card__emoji">🤦</div>
+                        <h3 class="category-card__title">TIFU</h3>
+                        <p class="category-card__description">Today I F***ed Up - Embarrassing mistake stories</p>
+                        <div class="category-card__examples">
+                            <span class="tag">Social mishaps</span>
+                            <span class="tag">Technology fails</span>
+                            <span class="tag">Cooking disasters</span>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card" data-category="relationship">
+                        <div class="category-card__emoji">💔</div>
+                        <h3 class="category-card__title">Relationship</h3>
+                        <p class="category-card__description">Relationship Advice - Dating and love problems</p>
+                        <div class="category-card__examples">
+                            <span class="tag">Communication issues</span>
+                            <span class="tag">Trust problems</span>
+                            <span class="tag">Breakup advice</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Step 2: Duration Selection -->
+            <section class="step-section hidden" id="durationSection">
+                <div class="step-header">
+                    <h2 class="step-title">Set Story Duration</h2>
+                    <p class="step-description">Choose how long your story should be</p>
+                </div>
+                
+                <div class="duration-controls">
+                    <div class="duration-slider-container">
+                        <label class="form-label" for="durationSlider">Duration: <span id="durationValue">3</span> minutes</label>
+                        <input type="range" id="durationSlider" class="duration-slider" min="3" max="10" value="3" step="1">
+                        <div class="duration-markers">
+                            <span>3 min</span>
+                            <span>10 min</span>
+                        </div>
+                    </div>
+                    
+                    <div class="word-count-info">
+                        <div class="word-count-card">
+                            <span class="word-count-label">Estimated words:</span>
+                            <span class="word-count-value" id="wordCount">420</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="btn btn--primary btn--lg" id="generateStoryBtn">
+                    <span>✨ Generate Story</span>
+                </button>
+            </section>
+
+            <!-- Step 3: Generated Story Preview -->
+            <section class="step-section hidden" id="storySection">
+                <div class="step-header">
+                    <h2 class="step-title">Your Generated Story</h2>
+                    <p class="step-description">Review your unique Reddit-style story</p>
+                </div>
+                
+                <div class="story-preview">
+                    <div class="reddit-post">
+                        <div class="reddit-post__header">
+                            <span class="reddit-post__subreddit" id="subredditName">r/AmItheAsshole</span>
+                            <span class="reddit-post__author">u/throwaway_user</span>
+                            <span class="reddit-post__time">2h ago</span>
+                        </div>
+                        <h3 class="reddit-post__title" id="storyTitle">Loading story...</h3>
+                        <div class="reddit-post__content" id="storyContent">
+                            <div class="loading-spinner">Generating your unique story...</div>
+                        </div>
+                        <div class="reddit-post__tldr" id="storyTldr"></div>
+                    </div>
+                </div>
+                
+                <div class="story-actions">
+                    <button class="btn btn--secondary" id="regenerateBtn">🔄 Generate New Story</button>
+                    <button class="btn btn--primary" id="continueToCustomizationBtn">Continue to Customization →</button>
+                </div>
+            </section>
+
+            <!-- Step 4: Video Customization -->
+            <section class="step-section hidden" id="customizationSection">
+                <div class="step-header">
+                    <h2 class="step-title">Customize Your Video</h2>
+                    <p class="step-description">Choose voice, background, and caption settings</p>
+                </div>
+                
+                <div class="customization-grid">
+                    <div class="customization-panel">
+                        <h3 class="panel-title">🎙️ Voice Settings</h3>
+                        <div class="form-group">
+                            <label class="form-label" for="voiceSelect">Voice Type</label>
+                            <select class="form-control" id="voiceSelect">
+                                <option value="0">Female Voice 1 (Natural)</option>
+                                <option value="1">Male Voice 1 (Deep)</option>
+                                <option value="2">Female Voice 2 (Upbeat)</option>
+                                <option value="3">Male Voice 2 (Calm)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="speedSlider">Speed: <span id="speedValue">1.0</span>x</label>
+                            <input type="range" id="speedSlider" class="form-control" min="0.5" max="2.0" value="1.0" step="0.1">
+                        </div>
+                        <button class="btn btn--outline btn--sm" id="previewVoiceBtn">🎵 Preview Voice</button>
+                    </div>
+                    
+                    <div class="customization-panel">
+                        <h3 class="panel-title">🎨 Background Style</h3>
+                        <div class="background-options">
+                            <div class="background-option active" data-background="minecraft">
+                                <div class="background-preview minecraft-bg"></div>
+                                <span>Minecraft Parkour</span>
+                            </div>
+                            <div class="background-option" data-background="nature">
+                                <div class="background-preview nature-bg"></div>
+                                <span>Nature Scenes</span>
+                            </div>
+                            <div class="background-option" data-background="urban">
+                                <div class="background-preview urban-bg"></div>
+                                <span>Urban Landscape</span>
+                            </div>
+                            <div class="background-option" data-background="abstract">
+                                <div class="background-preview abstract-bg"></div>
+                                <span>Abstract Geometry</span>
+                            </div>
+                            <div class="background-option" data-background="ocean">
+                                <div class="background-preview ocean-bg"></div>
+                                <span>Ocean Waves</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="customization-panel">
+                        <h3 class="panel-title">📝 Caption Style</h3>
+                        <div class="form-group">
+                            <label class="form-label" for="captionFont">Font Style</label>
+                            <select class="form-control" id="captionFont">
+                                <option value="bold">Bold (TikTok Style)</option>
+                                <option value="clean">Clean & Modern</option>
+                                <option value="impact">High Impact</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="captionColor">Text Color</label>
+                            <select class="form-control" id="captionColor">
+                                <option value="white">White</option>
+                                <option value="yellow">Yellow Highlight</option>
+                                <option value="gradient">Rainbow Gradient</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Step 5: Video Preview & Generation -->
+            <section class="step-section hidden" id="videoSection">
+                <div class="step-header">
+                    <h2 class="step-title">Video Preview</h2>
+                    <p class="step-description">Preview and generate your TikTok video</p>
+                </div>
+                
+                <div class="video-workspace">
+                    <div class="video-preview-container">
+                        <div class="tiktok-frame">
+                            <div class="video-preview" id="videoPreview">
+                                <div class="background-animation" id="backgroundAnimation"></div>
+                                <div class="video-captions" id="videoCaptions">
+                                    <p class="caption-text">Your story will appear here with highlighted captions...</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="video-specs">
+                            <span class="spec-item">📐 1080x1920</span>
+                            <span class="spec-item">🎬 30 FPS</span>
+                            <span class="spec-item">⏱️ <span id="videoLength">3:00</span></span>
+                        </div>
+                    </div>
+                    
+                    <div class="video-controls">
+                        <button class="btn btn--secondary btn--full-width" id="previewVideoBtn">
+                            👁️ Preview Video
+                        </button>
+                        <button class="btn btn--primary btn--full-width btn--lg" id="generateVideoBtn">
+                            🚀 Generate MP4 Video
+                        </button>
+                        
+                        <div class="progress-container hidden" id="progressContainer">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progressFill"></div>
+                            </div>
+                            <div class="progress-text" id="progressText">Initializing...</div>
+                        </div>
+                        
+                        <div class="download-container hidden" id="downloadContainer">
+                            <div class="success-message">
+                                ✅ Video generated successfully!
+                            </div>
+                            <button class="btn btn--success btn--full-width btn--lg" id="downloadBtn">
+                                💾 Download MP4 (Ready for TikTok)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
