@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TikTok Faceless Video Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">
+                <span class="tiktok-gradient">TikTok</span> 
+                Video Generator
+            </h1>
+            <p class="subtitle">Create viral faceless videos with AI-generated Reddit stories</p>
+            <button id="theme-toggle" class="btn btn-secondary theme-toggle">🌙 Dark Mode</button>
+        </header>
+
+        <div class="content-grid">
+            <!-- Story Configuration -->
+            <section class="card story-config">
+                <h2 class="card-title">📝 Story Configuration</h2>
+                
+                <div class="story-types">
+                    <div class="story-type-card" data-type="aita">
+                        <div class="story-icon">⚖️</div>
+                        <h3>AITA</h3>
+                        <p>Am I The A**hole stories with moral dilemmas</p>
+                    </div>
+                    
+                    <div class="story-type-card" data-type="tifu">
+                        <div class="story-icon">🤦</div>
+                        <h3>TIFU</h3>
+                        <p>Today I F***ed Up embarrassing stories</p>
+                    </div>
+                    
+                    <div class="story-type-card" data-type="relationship">
+                        <div class="story-icon">💔</div>
+                        <h3>Relationship</h3>
+                        <p>Relationship advice and drama stories</p>
+                    </div>
+                </div>
+
+                <div class="duration-slider">
+                    <label for="duration">Video Duration: <span id="duration-display">5 minutes</span></label>
+                    <input type="range" id="duration" min="2" max="10" value="5" class="slider">
+                    <div class="duration-labels">
+                        <span>2 min (~280 words)</span>
+                        <span>10 min (~1400 words)</span>
+                    </div>
+                </div>
+
+                <button id="generate-story" class="btn btn-primary btn--full-width">
+                    🎲 Generate Random Story
+                </button>
+
+                <div id="story-preview" class="story-preview hidden">
+                    <h3>Generated Story Preview</h3>
+                    <div id="story-text"></div>
+                    <div class="story-stats">
+                        <span id="word-count">0 words</span>
+                        <span id="estimated-duration">0:00</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Video Settings -->
+            <section class="card video-settings">
+                <h2 class="card-title">🎥 Video Settings</h2>
+                
+                <div class="setting-group">
+                    <label for="voice-select">Voice:</label>
+                    <select id="voice-select" class="select">
+                        <option value="">Loading voices...</option>
+                    </select>
+                </div>
+
+                <div class="setting-group">
+                    <label for="speech-rate">Speech Rate:</label>
+                    <input type="range" id="speech-rate" min="0.5" max="2" value="1" step="0.1" class="slider">
+                    <span id="speech-rate-display">1.0x</span>
+                </div>
+
+                <div class="setting-group">
+                    <label for="background-select">Background Animation:</label>
+                    <select id="background-select" class="select">
+                        <option value="minecraft">🎮 Minecraft Parkour</option>
+                        <option value="nature">🌿 Peaceful Nature</option>
+                        <option value="urban">🏙️ Urban Landscape</option>
+                        <option value="abstract">🎨 Abstract Geometry</option>
+                        <option value="ocean">🌊 Ocean Waves</option>
+                    </select>
+                </div>
+
+                <div class="setting-group">
+                    <label for="font-select">Caption Font:</label>
+                    <select id="font-select" class="select">
+                        <option value="Arial">Arial</option>
+                        <option value="Inter">Inter</option>
+                        <option value="Helvetica">Helvetica</option>
+                        <option value="Georgia">Georgia</option>
+                        <option value="Roboto">Roboto</option>
+                    </select>
+                </div>
+
+                <div class="setting-group">
+                    <label for="font-size">Font Size:</label>
+                    <input type="range" id="font-size" min="20" max="60" value="36" class="slider">
+                    <span id="font-size-display">36px</span>
+                </div>
+
+                <div class="setting-group">
+                    <label for="caption-color">Caption Color:</label>
+                    <select id="caption-color" class="select">
+                        <option value="#FFFFFF">⚪ White</option>
+                        <option value="#000000">⚫ Black</option>
+                        <option value="#FF0050">🔴 TikTok Pink</option>
+                        <option value="#25F4EE">🔵 TikTok Blue</option>
+                    </select>
+                </div>
+
+                <div class="actions">
+                    <button id="preview-video" class="btn btn-secondary btn--full-width">
+                        👀 Preview Video
+                    </button>
+                    <button id="generate-video" class="btn btn-primary btn--full-width">
+                        🎬 Generate & Download MP4
+                    </button>
+                </div>
+            </section>
+
+            <!-- Video Preview -->
+            <section class="card video-preview">
+                <h2 class="card-title">📱 TikTok Preview</h2>
+                
+                <div class="tiktok-container">
+                    <canvas id="video-canvas" width="1080" height="1920"></canvas>
+                    <div id="captions-overlay" class="captions-overlay"></div>
+                </div>
+
+                <div class="preview-controls">
+                    <button id="play-pause" class="control-btn">▶️</button>
+                    <div class="progress-container">
+                        <div id="progress-bar" class="progress-bar">
+                            <div id="progress-fill" class="progress-fill"></div>
+                        </div>
+                        <span id="time-display">0:00 / 0:00</span>
+                    </div>
+                    <button id="volume-toggle" class="control-btn">🔊</button>
+                </div>
+
+                <div id="generation-status" class="status hidden">
+                    <div class="status-icon">⏳</div>
+                    <div class="status-text">Generating video...</div>
+                    <div class="progress-bar">
+                        <div id="generation-progress" class="progress-fill"></div>
+                    </div>
+                </div>
+
+                <div id="download-section" class="download-section hidden">
+                    <div class="success-message">
+                        ✅ Video generated successfully!
+                    </div>
+                    <a id="download-link" class="btn btn-download" download>
+                        📥 Download MP4 Video
+                    </a>
+                    <div class="video-info">
+                        <span id="file-size">File size: Calculating...</span>
+                        <span id="video-duration">Duration: 0:00</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Error Messages -->
+        <div id="error-toast" class="error-toast hidden">
+            <div class="error-icon">❌</div>
+            <div class="error-message"></div>
+            <button class="error-close">×</button>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div id="loading-overlay" class="loading-overlay hidden">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">Processing video...</div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
