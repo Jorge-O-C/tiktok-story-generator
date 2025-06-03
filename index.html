@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TikTok Story Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="header__title">📱 TikTok Story Generator</h1>
+            <p class="header__subtitle">Create engaging faceless videos in perfect 9:16 format</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main">
+            <!-- Story Type Selection -->
+            <section class="story-types">
+                <h2 class="section-title">Choose Your Story Type</h2>
+                <div class="story-grid">
+                    <div class="story-card" data-type="aita">
+                        <div class="story-card__icon">⚖️</div>
+                        <h3 class="story-card__title">AITA</h3>
+                        <p class="story-card__description">Am I The Asshole - Moral dilemmas seeking community judgment</p>
+                    </div>
+                    <div class="story-card" data-type="tifu">
+                        <div class="story-card__icon">🤦</div>
+                        <h3 class="story-card__title">TIFU</h3> 
+                        <p class="story-card__description">Today I F***ed Up - Embarrassing mistakes and consequences</p>
+                    </div>
+                    <div class="story-card" data-type="relationship">
+                        <div class="story-card__icon">💔</div>
+                        <h3 class="story-card__title">Relationship</h3>
+                        <p class="story-card__description">Seeking guidance on interpersonal conflicts</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Duration Selection -->
+            <section class="duration-section">
+                <h2 class="section-title">Video Duration</h2>
+                <div class="duration-control">
+                    <label for="duration-slider" class="duration-label">
+                        <span class="duration-value">5 minutes</span>
+                        <span class="word-count">(~700 words)</span>
+                    </label>
+                    <input type="range" id="duration-slider" class="duration-slider" min="2" max="10" value="5" step="1">
+                    <div class="duration-marks">
+                        <span>2min</span>
+                        <span>5min</span>
+                        <span>10min</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Generate Button -->
+            <div class="generate-section">
+                <button class="btn btn--primary btn--lg generate-btn" id="generate-story">
+                    ✨ Generate Story
+                </button>
+            </div>
+
+            <!-- Generated Story Display -->
+            <section class="story-display" id="story-display" style="display: none;">
+                <h2 class="section-title">Generated Story</h2>
+                <div class="story-content" id="story-content"></div>
+                <div class="story-stats">
+                    <span class="word-count-display" id="word-count-display">0 words</span>
+                    <span class="reading-time" id="reading-time">0 min</span>
+                </div>
+            </section>
+
+            <!-- Video Customization -->
+            <section class="video-settings" id="video-settings" style="display: none;">
+                <h2 class="section-title">Video Settings</h2>
+                <div class="settings-grid">
+                    <!-- Voice Settings -->
+                    <div class="setting-group">
+                        <label class="form-label">Voice</label>
+                        <select class="form-control" id="voice-select">
+                            <option value="default">Default</option>
+                            <option value="female">Female Voice</option>
+                            <option value="male">Male Voice</option>
+                            <option value="uk">UK English</option>
+                            <option value="us">US English</option>
+                        </select>
+                    </div>
+
+                    <!-- Speed Settings -->
+                    <div class="setting-group">
+                        <label class="form-label">Speed: <span id="speed-value">1.0x</span></label>
+                        <input type="range" id="speed-slider" class="form-control" min="0.5" max="2" value="1" step="0.1">
+                    </div>
+
+                    <!-- Background Settings -->
+                    <div class="setting-group">
+                        <label class="form-label">Background</label>
+                        <select class="form-control" id="background-select">
+                            <option value="minecraft">Minecraft Parkour</option>
+                            <option value="nature">Nature Scenes</option>
+                            <option value="urban">Urban Landscape</option>
+                            <option value="abstract">Abstract Patterns</option>
+                            <option value="ocean">Ocean Waves</option>
+                        </select>
+                    </div>
+
+                    <!-- Caption Color -->
+                    <div class="setting-group">
+                        <label class="form-label">Caption Color</label>
+                        <input type="color" id="caption-color" class="form-control color-input" value="#ffffff">
+                    </div>
+                </div>
+            </section>
+
+            <!-- TikTok Video Preview -->
+            <section class="video-preview-section" id="video-preview-section" style="display: none;">
+                <h2 class="section-title">TikTok Preview</h2>
+                <div class="tiktok-container">
+                    <div class="tiktok-video" id="tiktok-video">
+                        <div class="video-background" id="video-background"></div>
+                        <div class="video-content">
+                            <div class="video-captions" id="video-captions">
+                                <div class="caption-text" id="caption-text">Your story will appear here...</div>
+                            </div>
+                        </div>
+                        <div class="video-controls">
+                            <button class="control-btn play-pause-btn" id="play-pause-btn">▶️</button>
+                            <div class="progress-container">
+                                <div class="progress-bar" id="progress-bar"></div>
+                                <div class="progress-fill" id="progress-fill"></div>
+                            </div>
+                            <button class="control-btn volume-btn" id="volume-btn">🔊</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Export Options -->
+            <section class="export-section" id="export-section" style="display: none;">
+                <h2 class="section-title">Export & Share</h2>
+                <div class="export-buttons">
+                    <button class="btn btn--secondary export-btn" id="copy-text-btn">📋 Copy Text</button>
+                    <button class="btn btn--primary export-btn" id="preview-video-btn">🎬 Preview Video</button>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2025 TikTok Story Generator - Create engaging content for social media</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
