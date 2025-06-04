@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FacelessAI - Create Viral TikTok Videos</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+        <p>Initializing FacelessAI...</p>
+    </div>
+
+    <!-- Main Application -->
+    <div class="main-content">
+        <!-- Hero Section -->
+        <header class="hero-section">
+            <div class="hero-content">
+                <h1>Create Viral TikTok Videos with <span class="brand-text">FacelessAI</span></h1>
+                <p class="hero-subtitle">Generate captivating Reddit-style stories with AI narration and animated backgrounds</p>
+                <div class="hero-stats">
+                    <span>🎬 Instant MP4 Downloads</span>
+                    <span>🤖 AI-Powered Stories</span>
+                    <span>🎭 Multiple Voices</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Features Section -->
+        <section class="features-section">
+            <h2>Powerful Features for Content Creators</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI Story Generation</h3>
+                    <p>Create unique Reddit-style stories in real-time with advanced AI algorithms</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎭</div>
+                    <h3>Natural Voice Narration</h3>
+                    <p>Choose from multiple high-quality male and female voice options</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎥</div>
+                    <h3>TikTok Ready Videos</h3>
+                    <p>Perfect 9:16 format with instant MP4 download for viral content</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Lightning Fast</h3>
+                    <p>Generate professional videos in minutes, not hours</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Animated Backgrounds</h3>
+                    <p>Choose from 5 stunning animated background styles</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Mobile Optimized</h3>
+                    <p>Works perfectly on desktop and mobile devices</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Generator Section -->
+        <section class="video-generator" id="videoGenerator">
+            <h2>Create Your Video</h2>
+            
+            <div class="generator-container">
+                <!-- Controls Panel -->
+                <div class="controls-panel">
+                    <div class="control-group">
+                        <label for="storyType">Story Type</label>
+                        <select id="storyType" class="form-control">
+                            <option value="aita">🤔 AITA (Am I The Asshole)</option>
+                            <option value="tifu">😅 TIFU (Today I F***ed Up)</option>
+                            <option value="relationship">💔 Relationship Advice</option>
+                        </select>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="voiceSelect">Voice Narrator</label>
+                        <select id="voiceSelect" class="form-control">
+                            <option value="">Loading voices...</option>
+                        </select>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="backgroundType">Background Style</label>
+                        <select id="backgroundType" class="form-control">
+                            <option value="minecraft">Minecraft Parkour</option>
+                            <option value="nature">Peaceful Nature</option>
+                            <option value="urban">Urban Landscape</option>
+                            <option value="abstract">Abstract Geometry</option>
+                            <option value="ocean">Ocean Waves</option>
+                        </select>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="durationSlider">Duration: <span id="durationDisplay">5 minutes</span></label>
+                        <input type="range" id="durationSlider" min="3" max="10" value="5" class="duration-slider">
+                        <div class="duration-labels">
+                            <span>3 min</span>
+                            <span>10 min</span>
+                        </div>
+                        <div class="word-count" id="wordCount">Target: 700 words</div>
+                    </div>
+
+                    <button id="generateVideo" class="btn btn--primary btn--full-width btn--lg">
+                        <span class="button-icon">🎬</span>
+                        Generate Video
+                    </button>
+                </div>
+
+                <!-- Preview Panel -->
+                <div class="preview-panel">
+                    <div class="video-preview" id="videoPreview">
+                        <div class="preview-placeholder">
+                            <div class="placeholder-icon">📱</div>
+                            <p>Video preview will appear here</p>
+                            <p class="preview-note">Perfect 9:16 TikTok format</p>
+                        </div>
+                        <canvas id="videoCanvas" width="1080" height="1920" style="display: none;"></canvas>
+                    </div>
+                    
+                    <div class="story-preview card">
+                        <div class="card__body">
+                            <h4>Generated Story Preview</h4>
+                            <div class="story-content" id="storyContent">
+                                <p>Your AI-generated story will appear here after clicking "Generate Video"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Section -->
+            <div class="progress-section" id="progressSection" style="display: none;">
+                <div class="card">
+                    <div class="card__body">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <p class="progress-text" id="progressText">Generating your video...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Download Section -->
+            <div class="download-section" id="downloadSection" style="display: none;">
+                <div class="card">
+                    <div class="card__body">
+                        <h3>Your Video is Ready!</h3>
+                        <p>Click the button below to download your TikTok-ready MP4 video</p>
+                        <div class="download-buttons">
+                            <button id="downloadButton" class="btn btn--primary btn--lg">
+                                <span class="button-icon">⬇️</span>
+                                Download MP4
+                            </button>
+                            <button id="createAnother" class="btn btn--secondary btn--lg">
+                                Create Another Video
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p>&copy; 2025 FacelessAI. Create viral TikTok content with AI.</p>
+                <div class="footer-links">
+                    <a href="#features">Features</a>
+                    <a href="#generator">Generator</a>
+                    <a href="https://github.com" target="_blank">GitHub</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
