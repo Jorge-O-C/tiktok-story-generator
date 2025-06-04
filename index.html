@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TikTok Content Creator - Create Viral Videos in Minutes</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Landing Page -->
+    <div id="landing-page" class="landing-page">
+        <!-- Navigation -->
+        <nav class="nav">
+            <div class="container flex justify-between items-center">
+                <div class="logo">
+                    <i class="fas fa-video gradient-text"></i>
+                    <span class="gradient-text">TikTok Creator</span>
+                </div>
+                <button class="btn btn--primary" id="get-started-btn">Get Started Free</button>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-bg"></div>
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Create Viral TikTok Videos in Minutes</h1>
+                    <p class="hero-subtitle">AI-powered content creation tools used by 2M+ creators worldwide. Generate authentic message conversations, split-screen videos, and more.</p>
+                    <button class="btn btn--primary btn--lg cta-button" id="hero-cta-btn">
+                        <i class="fas fa-rocket"></i>
+                        Start Creating Now
+                    </button>
+                    <div class="video-previews">
+                        <div class="preview-card"><i class="fas fa-comment"></i><span>Message Videos</span></div>
+                        <div class="preview-card"><i class="fas fa-columns"></i><span>Split Screen</span></div>
+                        <div class="preview-card"><i class="fas fa-download"></i><span>Video Downloader</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="container">
+                <h2 class="text-center">Everything You Need to Go Viral</h2>
+                <div class="features-grid" id="features-grid"></div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials">
+            <div class="container">
+                <h2 class="text-center">Trusted by Top Creators</h2>
+                <div class="testimonials-grid" id="testimonials-grid"></div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section class="pricing">
+            <div class="container">
+                <h2 class="text-center">Simple, Transparent Pricing</h2>
+                <div class="pricing-cards">
+                    <div class="pricing-card featured">
+                        <div class="popular-badge">Most Popular</div>
+                        <h3>Free Forever</h3>
+                        <div class="price">$0<span>/month</span></div>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check"></i> Unlimited AI Message Generation</li>
+                            <li><i class="fas fa-check"></i> All Platform Styles (iPhone, WhatsApp, etc.)</li>
+                            <li><i class="fas fa-check"></i> Split-Screen Video Creator</li>
+                            <li><i class="fas fa-check"></i> AI Vocal Remover</li>
+                            <li><i class="fas fa-check"></i> Video Downloader</li>
+                            <li><i class="fas fa-check"></i> HD Quality Exports</li>
+                        </ul>
+                        <button class="btn btn--primary btn--full-width get-started-btn">Get Started</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-brand">
+                        <div class="logo">
+                            <i class="fas fa-video gradient-text"></i>
+                            <span class="gradient-text">TikTok Creator</span>
+                        </div>
+                        <p>The ultimate AI-powered content creation platform for TikTok creators.</p>
+                    </div>
+                    <div class="footer-links">
+                        <div class="link-group">
+                            <h4>Tools</h4>
+                            <a href="#" class="tab-link" data-tab="messages">Message Generator</a>
+                            <a href="#" class="tab-link" data-tab="reddit">Reddit Videos</a>
+                            <a href="#" class="tab-link" data-tab="split">Split Screen</a>
+                            <a href="#" class="tab-link" data-tab="vocal">Vocal Remover</a>
+                        </div>
+                        <div class="link-group">
+                            <h4>Support</h4>
+                            <a href="#">Help Center</a>
+                            <a href="#">Tutorials</a>
+                            <a href="#">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2025 TikTok Creator. All rights reserved.</p>
+                    <div class="social-links">
+                        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Main Application -->
+    <div id="main-app" class="main-app hidden">
+        <!-- App Navigation -->
+        <nav class="app-nav">
+            <div class="container">
+                <div class="nav-brand" id="return-to-home">
+                    <i class="fas fa-video gradient-text"></i>
+                    <span class="gradient-text">TikTok Creator</span>
+                </div>
+                <div class="nav-tabs">
+                    <button class="nav-tab active" data-tab="messages">
+                        <i class="fas fa-comment"></i>
+                        Fake Messages
+                    </button>
+                    <button class="nav-tab" data-tab="reddit">
+                        <i class="fas fa-reddit"></i>
+                        Reddit Videos
+                    </button>
+                    <button class="nav-tab" data-tab="split">
+                        <i class="fas fa-columns"></i>
+                        Split Screen
+                    </button>
+                    <button class="nav-tab" data-tab="vocal">
+                        <i class="fas fa-music"></i>
+                        Vocal Remover
+                    </button>
+                    <button class="nav-tab" data-tab="downloader">
+                        <i class="fas fa-download"></i>
+                        Downloader
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Tab Contents -->
+        <div class="container">
+            <!-- Fake Messages Tab -->
+            <div id="messages-tab" class="tab-content active">
+                <div class="tool-header">
+                    <h2>AI Fake Message Generator</h2>
+                    <p>Create authentic-looking conversations that go viral on TikTok</p>
+                </div>
+                
+                <div class="messages-creator">
+                    <div class="creator-sidebar">
+                        <div class="section">
+                            <h3>Platform Style</h3>
+                            <div class="platform-selector" id="platform-selector"></div>
+                        </div>
+                        
+                        <div class="section">
+                            <h3>AI Generation</h3>
+                            <select class="form-control" id="ai-category">
+                                <option value="">Select Category</option>
+                                <option value="drama">Drama & Revenge</option>
+                                <option value="relationships">Relationships</option>
+                                <option value="horror">Horror & Mystery</option>
+                                <option value="comedy">Comedy & Fails</option>
+                                <option value="family">Family Drama</option>
+                            </select>
+                            <button class="btn btn--primary mt-8" id="generate-ai-btn">
+                                <i class="fas fa-magic"></i>
+                                Generate Story
+                            </button>
+                        </div>
+
+                        <div class="section">
+                            <h3>Manual Creation</h3>
+                            <div class="form-group">
+                                <label class="form-label">Contact Name</label>
+                                <input type="text" class="form-control" id="contact-name" placeholder="Enter name">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Message Text</label>
+                                <textarea class="form-control" id="message-text" placeholder="Type your message..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Message Type</label>
+                                <select class="form-control" id="message-type">
+                                    <option value="sent">Sent (You)</option>
+                                    <option value="received">Received (Them)</option>
+                                </select>
+                            </div>
+                            <button class="btn btn--secondary" id="add-message-btn">
+                                <i class="fas fa-plus"></i>
+                                Add Message
+                            </button>
+                        </div>
+
+                        <div class="section">
+                            <button class="btn btn--primary btn--full-width" id="generate-video-btn">
+                                <i class="fas fa-video"></i>
+                                Generate Video
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="phone-preview">
+                        <div class="phone-frame">
+                            <div class="phone-screen" id="phone-screen">
+                                <div class="message-header">
+                                    <div class="contact-info">
+                                        <div class="contact-avatar">👤</div>
+                                        <div class="contact-details">
+                                            <h4 id="preview-contact-name">Contact</h4>
+                                            <span class="status">Active now</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="messages-container" id="messages-container">
+                                    <div class="welcome-message">
+                                        Select a platform and start creating your conversation!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reddit Videos Tab -->
+            <div id="reddit-tab" class="tab-content">
+                <div class="tool-header">
+                    <h2>Reddit Story Videos</h2>
+                    <p>Generate engaging story videos with AI narration and background gameplay</p>
+                </div>
+                <div class="reddit-creator">
+                    <div class="form-group">
+                        <label class="form-label">Story Category</label>
+                        <select class="form-control" id="reddit-category">
+                            <option value="horror">Horror Stories</option>
+                            <option value="aita">Am I The A**hole?</option>
+                            <option value="relationships">Relationship Advice</option>
+                            <option value="workplace">Workplace Drama</option>
+                            <option value="confessions">Confessions</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Voice</label>
+                        <select class="form-control" id="voice-select"></select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Background Video</label>
+                        <select class="form-control" id="background-select"></select>
+                    </div>
+                    <button class="btn btn--primary" id="generate-reddit-btn">
+                        <i class="fas fa-magic"></i>
+                        Generate Story Video
+                    </button>
+                </div>
+            </div>
+
+            <!-- Split Screen Tab -->
+            <div id="split-tab" class="tab-content">
+                <div class="tool-header">
+                    <h2>Split-Screen Video Creator</h2>
+                    <p>Combine two videos in TikTok-optimized 9:16 format</p>
+                </div>
+                <div class="split-creator">
+                    <div class="upload-areas">
+                        <div class="upload-area" id="upload-top">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Upload Top Video</p>
+                            <input type="file" id="video1" accept="video/*" hidden>
+                        </div>
+                        <div class="upload-area" id="upload-bottom">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Upload Bottom Video</p>
+                            <input type="file" id="video2" accept="video/*" hidden>
+                        </div>
+                    </div>
+                    <button class="btn btn--primary" id="create-split-btn">
+                        <i class="fas fa-scissors"></i>
+                        Create Split Video
+                    </button>
+                </div>
+            </div>
+
+            <!-- Vocal Remover Tab -->
+            <div id="vocal-tab" class="tab-content">
+                <div class="tool-header">
+                    <h2>AI Vocal Remover</h2>
+                    <p>Extract vocals from any audio or video file using advanced AI</p>
+                </div>
+                <div class="vocal-remover">
+                    <div class="upload-area" id="upload-audio">
+                        <i class="fas fa-music"></i>
+                        <p>Upload Audio/Video File</p>
+                        <span>Supports MP3, MP4, WAV, AAC, FLAC</span>
+                        <input type="file" id="audio-file" accept="audio/*,video/*" hidden>
+                    </div>
+                    <button class="btn btn--primary" id="remove-vocals-btn">
+                        <i class="fas fa-waveform-lines"></i>
+                        Remove Vocals
+                    </button>
+                </div>
+            </div>
+
+            <!-- Video Downloader Tab -->
+            <div id="downloader-tab" class="tab-content">
+                <div class="tool-header">
+                    <h2>TikTok & YouTube Downloader</h2>
+                    <p>Download videos from TikTok and YouTube in any quality</p>
+                </div>
+                <div class="downloader">
+                    <div class="form-group">
+                        <label class="form-label">Video URL</label>
+                        <input type="url" class="form-control" id="video-url" placeholder="Paste TikTok or YouTube URL here...">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Quality</label>
+                        <select class="form-control" id="quality-select">
+                            <option value="1080p">1080p HD</option>
+                            <option value="720p">720p</option>
+                            <option value="480p">480p</option>
+                            <option value="audio">Audio Only (MP3)</option>
+                        </select>
+                    </div>
+                    <button class="btn btn--primary" id="download-video-btn">
+                        <i class="fas fa-download"></i>
+                        Download Video
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay hidden">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <p id="loading-text">Processing...</p>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
